@@ -19,3 +19,7 @@ access_key           = "{{env `ARM_ACCOUNT_KEY`}}"
 virtual_network_name = ""
 address_space = ["10.5.0.0/16"]
 address_prefix_test = "10.5.1.0/24"
+
+# VM
+admin_username = "adminuser"
+admin_password = "udacity-123"
