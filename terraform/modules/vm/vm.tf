@@ -19,10 +19,6 @@ resource "azurerm_linux_virtual_machine" "test" {
   admin_username      = "${var.admin_username}"
   admin_password      = "${var.admin_password}"
   network_interface_ids = [azurerm_network_interface.test.id]
-  admin_ssh_key {
-    username   = "${var.admin_username}"
-    public_key = "file('home/codespaces/.ssh/id_rsa.pub')"
-  }
   os_disk {
     caching           = "ReadWrite"
     storage_account_type = "Standard_LRS"
