@@ -8,4 +8,4 @@ variable application_type {}
 variable subnet_id {}
 variable public_ip_id {}
 variable admin_username {}
-variavble admin_password {}
+variable admin_password {}
