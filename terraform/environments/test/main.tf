@@ -6,18 +6,12 @@ provider "azurerm" {
   features {}
 }
 
-# terraform {
-#   backend "azurerm" {
-#     storage_account_name = "tfstate275371842"
-#     container_name       = "tfstate"
-#     key                  = "test.terraform.tfstate"
-#     access_key           = "CoHDEzW59M9uBkr31giGfQ0wAOlFusjF2VOKq/dAyXd2vx0rsvMjZFt1VWao4heaePsrUyUjoKWE+AStfitUNg=="
-#   }
-# }
-
 terraform {
-  backend "local" {
-    path = "terraform.tfstate"
+  backend "azurerm" {
+    storage_account_name = "tfstate275371842"
+    container_name       = "tfstate"
+    key                  = "test.terraform.tfstate"
+    access_key           = "CoHDEzW59M9uBkr31giGfQ0wAOlFusjF2VOKq/dAyXd2vx0rsvMjZFt1VWao4heaePsrUyUjoKWE+AStfitUNg=="
   }
 }
 
