@@ -31,6 +31,7 @@ resource "azurerm_resource_group" "test" {
 #   resource_group       = "${var.resource_group}"
 #   location             = "${var.location}"
 # }
+
 module "network" {
   source               = "../../modules/network"
   address_space        = "${var.address_space}"
