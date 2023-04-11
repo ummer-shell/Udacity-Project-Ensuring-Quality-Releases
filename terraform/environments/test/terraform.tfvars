@@ -7,7 +7,7 @@ tenant_id = "c61352ad-8113-4019-976d-e31adccc017c"
 # Resource Group/Location
 location = "East US"
 resource_group = "Azuredevops"
-application_type = "myApplication"
+application_type = "udacity-ummer-qa"
 
 # Network
 virtual_network_name = "vnet"

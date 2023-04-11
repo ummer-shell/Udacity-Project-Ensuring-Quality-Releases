@@ -18,6 +18,7 @@ resource "azurerm_linux_virtual_machine" "test" {
   size                = "Standard_DS2_v2"
   admin_username      = "${var.admin_username}"
   admin_password      = "${var.admin_password}"
+  disable_password_authentication = false
   network_interface_ids = [azurerm_network_interface.test.id]
   os_disk {
     caching           = "ReadWrite"
