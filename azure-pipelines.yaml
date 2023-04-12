@@ -159,7 +159,7 @@ stages:
         archiveFile: '$(Build.ArtifactStagingDirectory)/fakerestapi-$(Build.BuildId).zip'
 
     # FakeRestAPI - Publish    
-    - task: PublishPipelineArtifact
+    - task: PublishPipelineArtifact@1
       displayName: 'Publish FakeRestAPI artifact'
       inputs:
         targetPath: '$(Build.ArtifactStagingDirectory)/fakerestapi-$(Build.BuildId).zip'
