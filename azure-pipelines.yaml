@@ -189,7 +189,7 @@ stages:
   # Deploy FakeRestAPI Web App
   # ToDo: Provide <environment name> you created in your DevOps project
   - deployment: FakeRestAPI
-    resourceType: VirtualMachine
+    pool: Default
     environment: 'targetEnv'   # ToDo
     strategy:
       runOnce:
@@ -200,8 +200,9 @@ stages:
             inputs:
               azureSubscription: 'Azuredevops'     # ToDo
               appName:  'udacity-ummer-qa-AppService'             # ToDo
-              appType: webApp
+              appType: 'udacity-ummer-qa'
               package: $(Pipeline.Workspace)/fakerestapi/fakerestapi-$(Build.BuildId).zip      # ToDo: Use the published zip artifact. 
+              deploymentMethod: zipDeploy
           #--------------------------------------------#    
           # Run JMeter test suite against the App Service
           # ToDo: Update the script below to install jmeter, unzip the jmeter test suite published zip artifact, and run the PerformanceTestSuite.  
