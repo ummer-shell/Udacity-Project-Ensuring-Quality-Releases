@@ -199,7 +199,7 @@ stages:
           - task: AzureWebApp@1
             displayName: 'Deploy Azure Web App'
             inputs:
-              azureSubscription: 'azurerm-sc'     # ToDo
+              azureSubscription: 'Azuredevops'     # ToDo
               appName:  'udacity-ummer-qa-AppService'             # ToDo
               appType: webApp
               package: $(Pipeline.Workspace)/fakerestapi/fakerestapi-$(Build.BuildId).zip      # ToDo: Use the published zip artifact. 
