@@ -101,6 +101,11 @@ stages:
       inputs:
         script:  "npm install -g newman"         # ToDo: Write your commands to install newman
         workingDirectory: $(System.DefaultWorkingDirectory)
+    - task: CmdLine@2
+      displayName: Install Newman Reporter
+      inputs:
+        script: 'sudo npm install -g newman-reporter-junitfull' 
+        workingDirectory: $(System.DefaultWorkingDirectory)
     # Postman Data Validation Test Suite    
     # ToDo: Verify the working directory and the newman scripts
     - task: CmdLine@2
