@@ -30,7 +30,9 @@ def start_browser():
     printlog('Starting the browser...')
     # --uncomment when running in Azure DevOps.
     options = ChromeOptions()
-    options.add_argument("--headless") 
+    options.add_argument("--headless")
+    options.addArguments("--no-sandbox")
+    options.addArguments("--disable-dev-shm-usage")
     driver = webdriver.Chrome(options=options)
     printlog('Browser started successfully.')
 
