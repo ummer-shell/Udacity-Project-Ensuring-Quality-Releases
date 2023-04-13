@@ -25,6 +25,19 @@ resource "azurerm_network_security_group" "nsg" {
         source_address_prefix      = "*"
         destination_address_prefix = "*"
     }
+
+  security_rule {
+      name                       = "allow-access"
+      description                = "allow inbound traffic from the internet"
+      priority                   = 104
+      direction                  = "Inbound"
+      access                     = "Allow"
+      protocol                   = "*"
+      source_port_range          = "*"
+      destination_port_range     = "*"
+      source_address_prefix      = "*"
+      destination_address_prefix = "*"
+    }
 }
 resource "azurerm_subnet_network_security_group_association" "test" {
     subnet_id                 = "${var.subnet_id}"
