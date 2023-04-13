@@ -243,7 +243,7 @@ stages:
                 
                 #  ToDo: Add chromedriver executable to path
                 export PATH=$PATH:/path/to/chromedriver
-                echo path
+                echo $PATH
                 pwd     
                 
                 # ToDo: Write commands for deploying the UI Test Suite (published zip artifact) to the linux VM and execute the Test Suite
