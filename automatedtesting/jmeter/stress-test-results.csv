@@ -1,0 +1,6 @@
+timeStamp,elapsed,label,responseCode,responseMessage,threadName,dataType,success,failureMessage,bytes,sentBytes,grpThreads,allThreads,URL,Latency,IdleTime,Connect
+1681478185936,457,GET All Activities,200,OK,Multi Thread 1-1,text,true,,3109,164,5,5,https://udacity-ummer-qa-appservice.azurewebsites.net/api/Activities,457,0,356
+1681478185937,464,GET All Activities,200,OK,Multi Thread 1-3,text,true,,3109,164,4,4,https://udacity-ummer-qa-appservice.azurewebsites.net/api/Activities,464,0,359
+1681478185936,467,GET All Activities,200,OK,Multi Thread 1-2,text,true,,3109,164,3,3,https://udacity-ummer-qa-appservice.azurewebsites.net/api/Activities,467,0,359
+1681478185939,469,GET All Activities,200,OK,Multi Thread 1-4,text,true,,3109,164,2,2,https://udacity-ummer-qa-appservice.azurewebsites.net/api/Activities,469,0,358
+1681478185940,471,GET All Activities,200,OK,Multi Thread 1-5,text,true,,3109,164,1,1,https://udacity-ummer-qa-appservice.azurewebsites.net/api/Activities,471,0,357
