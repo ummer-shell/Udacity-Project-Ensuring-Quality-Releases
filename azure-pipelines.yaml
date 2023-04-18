@@ -272,56 +272,8 @@ stages:
                 
                 # ToDo: Write commands for deploying the UI Test Suite (published zip artifact) to the linux VM and execute the Test Suite
                 sudo mkdir -p $(Pipeline.Workspace)/automated-testing/selenium
-                unzip -o $(Pipeline.Workspace)/drop-uitests/$(Build.BuildId)-uitests -d $(Pipeline.Workspace)/automated-testing/selenium
+                sudo unzip -o $(Pipeline.Workspace)/drop-uitests/$(Build.BuildId)-uitests -d $(Pipeline.Workspace)/automated-testing/selenium
                 cd $(Pipeline.Workspace)/automated-testing/selenium
                 sudo python3 login.py
                 sudo mkdir -p /var/log/selenium
                 sudo cp ui-test-log.log /var/log/selenium
-
-# JMeter Testing
-# - stage: Performance Testing
-#   displayName: JMeter Performance Tests
-#   steps:
-#     - script: |
-#       #! /bin/bash
-#       sudo apt-get update -y
-#       sudo apt-get install default-jre-headless -y
-#       curl -O https://archive.apache.org/dist/jmeter/binaries/apache-jmeter-5.5.tgz
-#       tar xzvf apache-jmeter-5.5.tgz
-#       mkdir -p automated-testing/jmeter
-#     displayName: 'Install JMeter'
-
-    
-#     - script: |
-#       #! /bin/bash
-#       mkdir -p log/jmeter/endurance
-#       apache-jmeter-5.5/bin/jmeter -n -t automated-testing/jmeter/Endurance-Plan.jmx \
-#                                     -l log/jmeter/endurance-test-results.csv \
-#                                     -e -f -o log/jmeter/endurance \
-#                                     -j log/jmeter/endurance-test-results.log
-#     displayName: 'Endurance Testing'
-
-    
-#     - script: |
-#       #! /bin/bash
-#       mkdir -p log/jmeter/stress
-#       apache-jmeter-5.5/bin/jmeter -n -t automated-testing/jmeter/Stress-Plan.jmx \
-#                                     -l log/jmeter/stress-test-results.csv \
-#                                     -e -f -o log/jmeter/stress \
-#                                     -j log/jmeter/stress-test-results.log
-#     displayName: 'Stress Testing'
-
-#     #--------------------------------------------#  
-#     # JMeter (Performance) Test Suite - Archive
-#     # ToDo: Complete the ArchiveFiles@2 task and publish step 
-#     - task: ArchiveFiles@2
-#       displayName: 'Archive PerformanceTestSuite'
-#       inputs:
-#         rootFolderOrFile: '$(System.DefaultWorkingDirectory)/automatedtesting/jmeter'
-#         includeRootFolder: false
-#         archiveType: 'zip'
-#         archiveFile: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId)-loadtests.zip'
-#     # JMeter Test Suite - Publish    
-#     - publish: $(Build.ArtifactStagingDirectory)/$(Build.BuildId)-loadtests.zip
-#       displayName: 'Upload JMeter Package'
-#       artifact: drop-loadtests
