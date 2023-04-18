@@ -274,8 +274,8 @@ stages:
                 unzip -o $(Pipeline.Workspace)/drop-uitests/$(Build.BuildId)-uitests -d $(Pipeline.Workspace)/automated-testing/selenium
                 cd $(Pipeline.Workspace)/automated-testing/selenium
                 python3 login.py | tee -a ui-test-log.log
-                mkdir -p var/logs/selenium
-                sudo cp ui-test-log.log /var/logs/selenium
+                sudo mkdir -p var/log/selenium
+                sudo cp ui-test-log.log /var/log/selenium
 
 # JMeter Testing
 # - stage: Performance Testing
