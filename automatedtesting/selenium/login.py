@@ -11,7 +11,7 @@ def logging_config():
         logging.root.removeHandler(handler)
 
     logging.basicConfig(
-        filename='testlog.log',
+        filename='ui-test-log.log',
         filemode='w',
         format='%(asctime)s - %(levelname)s - %(message)s',
         datefmt='%d-%b-%y %H:%M:%S',
