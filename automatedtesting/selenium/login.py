@@ -12,9 +12,9 @@ def logging_config():
 
     logging.basicConfig(
         filename='ui-test-log.log',
-        filemode='w',
+        filemode='a',
         format='%(asctime)s - %(levelname)s - %(message)s',
-        datefmt='%d-%b-%y %H:%M:%S',
+        datefmt='%dd%bb%yy %HH:%MM:%SS',
         level=logging.INFO
     )
     
