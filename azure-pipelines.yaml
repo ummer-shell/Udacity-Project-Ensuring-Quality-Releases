@@ -265,7 +265,7 @@ stages:
                 sudo apt-get install python3-pip -y
                 sudo apt-get install unzip -y
                 sudo apt-get install -y chromium-browser
-                pip3 install selenium
+                sudo pip3 install selenium
                 
                 #  ToDo: Add chromedriver executable to path
                 export PATH=$PATH:/path/to/chromedriver 
@@ -274,8 +274,8 @@ stages:
                 sudo mkdir -p $(Pipeline.Workspace)/automated-testing/selenium
                 unzip -o $(Pipeline.Workspace)/drop-uitests/$(Build.BuildId)-uitests -d $(Pipeline.Workspace)/automated-testing/selenium
                 cd $(Pipeline.Workspace)/automated-testing/selenium
-                python3 login.py | tee -a ui-test-log.log
-                sudo mkdir -p var/log/selenium
+                sudo python3 login.py
+                sudo mkdir -p /var/log/selenium
                 sudo cp ui-test-log.log /var/log/selenium
 
 # JMeter Testing
