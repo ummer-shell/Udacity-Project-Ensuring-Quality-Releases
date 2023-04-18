@@ -260,16 +260,19 @@ stages:
 - stage: Performance Testing
   displayName: JMeter Performance Tests
   steps:
-    - bash: |
+    - script: |
+      #! /bin/bash
       sudo apt-get update -y
       sudo apt-get install default-jre-headless -y
       curl -O https://archive.apache.org/dist/jmeter/binaries/apache-jmeter-5.5.tgz
       tar xzvf apache-jmeter-5.5.tgz
-      mkdir -p testing/jmeter
+      mkdir -p automated-testing/jmeter
     displayName: 'Install JMeter'
 
     
-    - bash: |
+    - script: |
+      #! /bin/bash
+      mkdir -p log/jmeter/endurance
       apache-jmeter-5.5/bin/jmeter -n -t automated-testing/jmeter/Endurance-Plan.jmx \
                                     -l log/jmeter/endurance-test-results.csv \
                                     -e -f -o log/jmeter/endurance \
@@ -277,7 +280,9 @@ stages:
     displayName: 'Endurance Testing'
 
     
-    - bash: |
+    - script: |
+      #! /bin/bash
+      mkdir -p log/jmeter/stress
       apache-jmeter-5.5/bin/jmeter -n -t automated-testing/jmeter/Stress-Plan.jmx \
                                     -l log/jmeter/stress-test-results.csv \
                                     -e -f -o log/jmeter/stress \
