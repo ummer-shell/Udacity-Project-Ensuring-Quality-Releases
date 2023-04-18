@@ -165,20 +165,20 @@ stages:
         targetPath: '$(Build.ArtifactStagingDirectory)/fakerestapi-$(Build.BuildId).zip'
         artifactName: 'fakerestapi'
 
-#     #--------------------------------------------#  
-#     # JMeter (Performance) Test Suite - Archive
-#     # ToDo: Complete the ArchiveFiles@2 task and publish step 
-#     - task: ArchiveFiles@2
-#       displayName: 'Archive PerformanceTestSuite'
-#       inputs:
-#         rootFolderOrFile: 
-#         includeRootFolder:
-#         archiveType: 
-#         archiveFile: 
-#     # JMeter Test Suite - Publish    
-#     - publish: 
-#       displayName: 
-#       artifact: 
+    # #--------------------------------------------#  
+    # # JMeter (Performance) Test Suite - Archive
+    # # ToDo: Complete the ArchiveFiles@2 task and publish step 
+    # - task: ArchiveFiles@2
+    #   displayName: 'Archive PerformanceTestSuite'
+    #   inputs:
+    #     rootFolderOrFile: '$(System.DefaultWorkingDirectory)/automatedtesting/jmeter'
+    #     includeRootFolder: false
+    #     archiveType: 'zip'
+    #     archiveFile: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId)-loadtests.zip'
+    # # JMeter Test Suite - Publish    
+    # - publish: $(Build.ArtifactStagingDirectory)/$(Build.BuildId)-loadtests.zip
+    #   displayName: 'Upload JMeter Package'
+    #   artifact: drop-loadtests
 
 # #--------------------------------------------#  
 # # DEPLOYMENT STAGE
@@ -208,10 +208,16 @@ stages:
           # ToDo: Update the script below to install jmeter, unzip the jmeter test suite published zip artifact, and run the PerformanceTestSuite.  
           # ToDo: Generate the log file. 
           # - task: CmdLine@2
+          #   displayName: 'Install JMeter'
           #   inputs:
           #     script: |
-          #                                                                   # ToDo: Write your commands
-          #     workingDirectory: $(Pipeline.Workspace)/<artifact>            # ToDo: Use the artifact name from the task above
+          #       sudo apt-get update -y
+          #       sudo apt-get install default-jre-headless -y
+          #       curl -O https://archive.apache.org/dist/jmeter/binaries/apache-jmeter-5.5.tgz
+          #       tar xzvf apache-jmeter-5.5.tgz
+          #       mkdir -p testing/jmeter
+
+          #     workingDirectory: $(Pipeline.Workspace)/drop-loadtests           # ToDo: Use the artifact name from the task above
               
   #--------------------------------------------#  
   # Selenium | Functional UI Tests
@@ -249,3 +255,46 @@ stages:
                 cd $(Pipeline.Workspace)/s
                 python3 login.py
                 
+
+# JMeter Testing
+- stage: Performance Testing
+  displayName: JMeter Performance Tests
+  steps:
+    - bash: |
+      sudo apt-get update -y
+      sudo apt-get install default-jre-headless -y
+      curl -O https://archive.apache.org/dist/jmeter/binaries/apache-jmeter-5.5.tgz
+      tar xzvf apache-jmeter-5.5.tgz
+      mkdir -p testing/jmeter
+    displayName: 'Install JMeter'
+
+    
+    - bash: |
+      apache-jmeter-5.5/bin/jmeter -n -t automated-testing/jmeter/Endurance-Plan.jmx \
+                                    -l log/jmeter/endurance-test-results.csv \
+                                    -e -f -o log/jmeter/endurance \
+                                    -j log/jmeter/endurance-test-results.log
+    displayName: 'Endurance Testing'
+
+    
+    - bash: |
+      apache-jmeter-5.5/bin/jmeter -n -t automated-testing/jmeter/Stress-Plan.jmx \
+                                    -l log/jmeter/stress-test-results.csv \
+                                    -e -f -o log/jmeter/stress \
+                                    -j log/jmeter/stress-test-results.log
+    displayName: 'Stress Testing'
+
+    #--------------------------------------------#  
+    # JMeter (Performance) Test Suite - Archive
+    # ToDo: Complete the ArchiveFiles@2 task and publish step 
+    - task: ArchiveFiles@2
+      displayName: 'Archive PerformanceTestSuite'
+      inputs:
+        rootFolderOrFile: '$(System.DefaultWorkingDirectory)/automatedtesting/jmeter'
+        includeRootFolder: false
+        archiveType: 'zip'
+        archiveFile: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId)-loadtests.zip'
+    # JMeter Test Suite - Publish    
+    - publish: $(Build.ArtifactStagingDirectory)/$(Build.BuildId)-loadtests.zip
+      displayName: 'Upload JMeter Package'
+      artifact: drop-loadtests
