@@ -271,6 +271,7 @@ stages:
                 export PATH=$PATH:/path/to/chromedriver 
                 
                 # ToDo: Write commands for deploying the UI Test Suite (published zip artifact) to the linux VM and execute the Test Suite
+                sudo mkdir -p $(Pipeline.Workspace)/automated-testing/selenium
                 unzip -o $(Pipeline.Workspace)/drop-uitests/$(Build.BuildId)-uitests -d $(Pipeline.Workspace)/automated-testing/selenium
                 cd $(Pipeline.Workspace)/automated-testing/selenium
                 python3 login.py | tee -a ui-test-log.log
