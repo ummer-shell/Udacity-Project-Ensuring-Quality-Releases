@@ -275,7 +275,7 @@ stages:
                 cd $(Pipeline.Workspace)/automated-testing/selenium
                 python3 login.py | tee -a ui-test-log.log
                 mkdir -p var/logs/selenium
-                sudo cp ut-test-log.log /var/logs/selenium
+                sudo cp ui-test-log.log /var/logs/selenium
 
 # JMeter Testing
 # - stage: Performance Testing
