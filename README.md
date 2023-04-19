@@ -21,7 +21,7 @@ For reference, the following links cover the required topics:
 ![1](./Screenshots/1-terraform.PNG)
 
 ## 2. CI/CD Pipeline
-The pipeline script could be improved by better splitting the stages (e.g. provision, build, test and deploy), however this the strucutre of the starter code was retained to ensure consistent formatting for project reviewers.
+The pipeline script could be improved by better splitting the stages (e.g. provision, build, test and deploy), however the structure of the starter code was retained to ensure consistent formatting for project reviewers.
 ![2](./Screenshots/2-full-pipeline.PNG)
 
 ## 3. JMeter Performance Testing
