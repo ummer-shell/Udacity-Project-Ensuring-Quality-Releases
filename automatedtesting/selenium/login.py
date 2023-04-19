@@ -14,7 +14,7 @@ def logging_config():
         filename='ui-test-log.log',
         filemode='a',
         format='%(asctime)s - %(levelname)s - %(message)s',
-        datefmt='%dd%bb%yy %HH:%MM:%SS',
+        datefmt='%d%m%y %H:%M:%S',
         level=logging.INFO
     )
     
